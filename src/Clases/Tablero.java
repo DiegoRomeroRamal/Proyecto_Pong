@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -13,7 +15,11 @@ import javax.swing.JPanel;
  * @Email 10778820@ieselgrao.org
  */
 public class Tablero extends JPanel {
-    ball bola = new ball(0,0);
+
+    ball bola = new ball(0, 0);
+    Barras r1 = new Barras(10, 200);
+    Barras r2 = new Barras(784 - 10 - Barras.Ancho, 200);
+    //-10-10 para el espacio entre el borde, y la propia raqueta
 
     public Tablero() {
         setBackground(Color.BLACK);
@@ -29,12 +35,30 @@ public class Tablero extends JPanel {
     }
 
     public void dibujar(Graphics2D g) {
-        g.fill(bola.getBall());                             
+        g.fill(bola.getBall());
+        g.fill(r1.getBarra());
+        g.fill(r2.getBarra());
+        System.out.println("x: "+getBounds().getMaxX());
+        System.out.println("y: "+getBounds().getMaxY());
+
     }
 
     public void actualizar() {
         bola.mover(getBounds());
 
+    }
+
+    
+    //Opcional a la clase hilo
+    public void iterarJuego() {
+        while (true) {
+            try {
+                repaint();
+                Thread.sleep(6);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 }

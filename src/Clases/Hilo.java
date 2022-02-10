@@ -28,5 +28,6 @@ public class Hilo extends Thread {          //Clase usada para aplicaciones mult
             Lamina.repaint();
         }
     }
-
+    
+    
 }

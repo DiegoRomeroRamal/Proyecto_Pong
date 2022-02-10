@@ -22,11 +22,14 @@ public class Ventana extends JFrame {       //Extendemos JFrame
 
         setLocationRelativeTo(null);    //Introducimos la ventana en una posición, en concreto null (centro)
 
-        setResizable(true);    //Metodo para impedir que podamos modificar el tamaño. En este caso, como si quiero, pongo true, aunq false hará que no se pueda de la ventana
+        setResizable(false);    //Metodo para impedir que podamos modificar el tamaño. En este caso, como si quiero, pongo true, aunq false hará que no se pueda de la ventana
 
         Lamina = new Tablero();  //Creamos Lamina
 
         add(Lamina);        //Añadimos la lamina
+
+        setVisible(true);   //Ventana visible 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   //Si ponemos X en la ventana, la ejecución termina
 
         hilo = new Hilo(Lamina);        //Iniciamos movimiento de pelota
         hilo.start();
